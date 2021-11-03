@@ -8,9 +8,10 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+
+    <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="loginProcess()">
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="username" formControlName="username">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" formControlName="password">
       <button type="submit" class="fadeIn fourth" >Log In</button>
     </form>
 
