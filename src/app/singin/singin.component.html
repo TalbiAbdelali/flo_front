@@ -8,18 +8,29 @@
       </div>
   
       <!-- Login Form -->
-      <form>
-        <input type="text" id="firstname" class="fadeIn second" name="firstname" placeholder="Firstname">
-        <input type="text" id="lastname" class="fadeIn second" name="lastname" placeholder="Lastname">
-        <input type="email" id="email" class="fadeIn second" name="email" placeholder="Email">
-        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+      <form *ngIf="formGroup" [formGroup]="formGroup" (ngSubmit)="signupProcess()">
+        <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username" formControlName="username">
+        <input type="text" id="lastname" class="fadeIn second" name="lastname" placeholder="Lastname" formControlName="lastname">
+        <!-- (keypress)="onKeypressEvent($event)" -->
+        <input type="email" id="email"  class="fadeIn second" name="email" placeholder="Email" formControlName="email">
+        <div *ngIf="formGroup.get('email').status === 'PENDING'">
+          <p style="color: orange;">Checking...</p>
+        </div>
+        <div *ngIf="formGroup.get('email').status === 'VALID'">
+          <p style="color: green;">Email is available!</p>
+        </div>
+        <div *ngIf="formGroup.get('email').errors && formGroup.get('email').errors.emailTaken">
+          <p style="color: red;">this email is already taken!</p>
+        </div>
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" formControlName="password">
         <input type="password" id="checkpassword" class="fadeIn third" name="checkpassword" placeholder="Confirme password">
-        <button type="submit" class="fadeIn fourth" >Log In</button>
+        <button type="submit" class="fadeIn fourth" >Sign up</button>
       </form>
   
       <!-- Remind Passowrd -->
       <div id="formFooter">
         <a routerLink="/login" class="underlineHover" href="#">Login?</a>
+        <p>{{infoMessage}}</p>
       </div>
   
     </div>

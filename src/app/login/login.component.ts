@@ -13,6 +13,7 @@ import { AuthServiceService } from '../service/auth-service.service';
 export class LoginComponent implements OnInit {
 
   formGroup : FormGroup;
+  infoMessage : String;
 
     constructor(
         private authService: AuthServiceService,
@@ -24,6 +25,13 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         //sessionStorage.setItem('token', '');
         this.initForm();
+        this.route.queryParams
+        .subscribe(params => {
+          if(params.registered !== undefined && params.registered === 'true') {
+              this.infoMessage = 'Registration Successful! Please Login!';
+              
+          }
+        });
     }
 
     initForm(){
