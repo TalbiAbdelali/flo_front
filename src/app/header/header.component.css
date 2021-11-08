@@ -1,0 +1,13 @@
+.navbar {
+    background-color: rgb(19, 167, 204) !important;
+}
+
+.button-search {
+    width: 50px;
+    height: 40px;
+}
+
+.search {
+    width: 20px;
+    height: 20px;
+}

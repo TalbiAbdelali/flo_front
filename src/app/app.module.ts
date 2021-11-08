@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { SinginComponent } from './singin/singin.component';
+import { MenuComponent } from './menu/menu.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -27,7 +28,8 @@ export class XhrInterceptor implements HttpInterceptor {
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    SinginComponent
+    SinginComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

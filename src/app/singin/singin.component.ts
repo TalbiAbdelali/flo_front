@@ -37,11 +37,12 @@ export class SinginComponent implements OnInit {
       lastname : ["",[Validators.required]],
       email : ["",[Validators.required,Validators.email],[ValidateEmailNotTaken.createValidator(this.authService)]],
       password : ["", [Validators.required,Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ["", [Validators.required]]
     });
   }
 
   signupProcess() {
+    console.log(this.formGroup);
     if(this.formGroup.valid) {
       this.authService.signup(this.formGroup.value)
       .pipe(first())
