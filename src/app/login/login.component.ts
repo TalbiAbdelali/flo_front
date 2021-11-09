@@ -51,11 +51,12 @@ export class LoginComponent implements OnInit {
                 if(result.status === 200) {
                     console.log("login.com",result);
                     localStorage.setItem ('token', result.body.token);
-                    console.log(localStorage.getItem('token'));
-                    this.authService.setAuthenticated(true);
+                    //console.log(localStorage.getItem('token'));
+                    localStorage.setItem ('currentUser', this.formGroup.controls['username'].value);
+                    this.authService.getLoggedInName.emit(localStorage.getItem('currentUser'));
                     this.router.navigate(['menu'], {queryParams: { registered: 'true' } });
                 } else {
-                    this.authService.setAuthenticated(false);
+                    this.authService.getLoggedInName.emit('Sign In');
                     //alert(result.message);
                 }
             })

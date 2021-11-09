@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { SinginComponent } from './singin/singin.component';
 import { MenuComponent } from './menu/menu.component';
+import { TokenInterceptor } from './interseptor/interseptor';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -38,7 +39,14 @@ export class XhrInterceptor implements HttpInterceptor {
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserServiceService,],
+  providers: [
+    UserServiceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
