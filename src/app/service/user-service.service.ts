@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,15 @@ export class UserServiceService {
 
   private userUrls : string;
 
-  constructor(private httpClient : HttpClient) {
-    this.userUrls = 'http://localhost:8080/users';
+  constructor(private http : HttpClient) {
   }
 
   public findAll() : Observable<User[]> {
-    return this.httpClient.get<User[]>(this.userUrls);
+    return this.http.get<User[]>(environment.apiURL);
   }
 
-  public save(user : User) {
-    return this.httpClient.post<User>(this.userUrls, user);
+  public getUserByUsername(username){
+    let params = new HttpParams().set("username", username);
+    return this.http.get<User>(environment.apiURL+'/api/user', {params});
   }
 }

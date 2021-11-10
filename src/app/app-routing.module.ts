@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
+import { ProfilComponent } from './profil/profil.component';
 import { SinginComponent } from './singin/singin.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'signup', component: SinginComponent }, //{ path: 'adduser', component: UserFormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent },
+  { path: 'profil', component: ProfilComponent },
   { path: '**', redirectTo: 'home' }
 ];
 

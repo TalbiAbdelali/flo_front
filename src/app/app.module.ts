@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { SinginComponent } from './singin/singin.component';
 import { MenuComponent } from './menu/menu.component';
 import { TokenInterceptor } from './interseptor/interseptor';
+import { ProfilComponent } from './profil/profil.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -30,7 +31,8 @@ export class XhrInterceptor implements HttpInterceptor {
     HeaderComponent,
     HomeComponent,
     SinginComponent,
-    MenuComponent
+    MenuComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

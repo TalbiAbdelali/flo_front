@@ -2,8 +2,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Injectable, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,15 +19,14 @@ export class AuthServiceService {
 
   constructor(private http : HttpClient, private router : Router) { }
 
-  login(data):Observable<any>{
+  login(user):Observable<any>{
     console.log('Call api...');
-    let contentHeader = new HttpHeaders({ "Content-Type":"application/json" });
-    return this.http.post<any>(this.url+'/login', data, { observe: 'response'});
+    return this.http.post<any>(this.url+'/login', user, { observe: 'response'});
   }
 
-  signup(data){
+  signup(user){
     console.log('Call api...');
-    return this.http.post<any>(this.url+'/api/signup', data, { observe: 'response'});
+    return this.http.post<any>(this.url+'/api/signup', user, { observe: 'response'});
 
   }
 

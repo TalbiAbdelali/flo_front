@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     localStorage.setItem ('currentUser', '');
+    localStorage.setItem ('token', '');
     this.authService.getLoggedInName.emit('Login');
   }
 
