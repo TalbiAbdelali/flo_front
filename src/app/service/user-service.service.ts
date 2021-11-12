@@ -22,4 +22,8 @@ export class UserServiceService {
     let params = new HttpParams().set("username", username);
     return this.http.get<User>(environment.apiURL+'/api/user', {params});
   }
+
+  public editUser(user:User) {
+    return this.http.put<User>(environment.apiURL+'/api/user'+localStorage.getItem('idUser'), user);
+  }
 }

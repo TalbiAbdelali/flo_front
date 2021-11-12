@@ -12,6 +12,8 @@ import { SinginComponent } from './singin/singin.component';
 import { MenuComponent } from './menu/menu.component';
 import { TokenInterceptor } from './interseptor/interseptor';
 import { ProfilComponent } from './profil/profil.component';
+import { AuthGuardService } from './service/auth-guard.service';
+import { AuthServiceService } from './service/auth-service.service';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -43,6 +45,8 @@ export class XhrInterceptor implements HttpInterceptor {
   ],
   providers: [
     UserServiceService,
+    AuthGuardService,
+    AuthServiceService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -11,15 +11,29 @@ export class ProfilComponent implements OnInit {
 
   data : any = {};
 
+  isFormEnabled : boolean = false;
+
   constructor(private userService : UserServiceService) { }
 
   ngOnInit(): void {
+    this.isFormEnabled = false;
     this.userService.getUserByUsername(localStorage.getItem('currentUser')).subscribe(res => {
-      console.log(res);
-      
-      this.data = res;  
-      console.log(this.data.username);
+      this.data = res;
+      console.log(this.data);
+      localStorage.setItem('idUser', this.data.id);
     });
+  }
+
+  setSaving(element, text){
+    if(this.isFormEnabled) {
+      this.isFormEnabled = false;
+      element.textContent = "Edit";
+      console.log(this.data); // call put request to api
+    } else {
+      this.isFormEnabled = true
+      element.textContent = text;
+    }
+    //element.disabled = true;
   }
 
 }
