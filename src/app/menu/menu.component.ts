@@ -12,14 +12,14 @@ export class MenuComponent implements OnInit {
   constructor(private router : Router, private authService : AuthServiceService) { }
 
   ngOnInit(): void {
-    this.authService.testGetWithToken().subscribe(
+    /*this.authService.testGetWithToken().subscribe(
       data => console.log(data),
       err =>  {
         console.log(err);
         alert("Only admin can access to this page");
         this.router.navigate(['home'], {queryParams: { registered: 'true' } });
       }
-    );
+    );*/
   }
 
 }

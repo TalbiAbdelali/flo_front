@@ -14,6 +14,7 @@ import { TokenInterceptor } from './interseptor/interseptor';
 import { ProfilComponent } from './profil/profil.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { AuthServiceService } from './service/auth-service.service';
+import { ErrorInterceptor } from './interseptor/errorInterceptor';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -51,7 +52,10 @@ export class XhrInterceptor implements HttpInterceptor {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true }
   ],
   bootstrap: [AppComponent]
 })

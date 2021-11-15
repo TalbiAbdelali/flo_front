@@ -1,8 +1,8 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { error } from 'protractor';
-import { from, Observable, throwError } from 'rxjs';
-import { catchError, mergeMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { AuthServiceService } from '../service/auth-service.service';
 
 
@@ -25,7 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             alert(error.statusText);
         }
 
-        return Observable.throw(error.statusText);
+        return throwError(error.statusText);
     }));
   }
 }

@@ -58,15 +58,18 @@ export class AuthServiceService {
     // get the token
     const token = this.getToken();
     // return a boolean indicating whether or not the token is expired
-    return this.tokenNotExpired(token);
+    if(token) {
+      return this.tokenNotExpired(token);
+    }
+    return  false;
   }
 
   public getToken(): string {
     return localStorage.getItem('token');
   }
 
-  testGetWithToken():Observable<any>{
+  /*testGetWithToken():Observable<any>{
     console.log('Call api...');
     return this.http.get<any>(this.url+'/admin/api/user', { observe: 'response'});
-  }
+  }*/
 }

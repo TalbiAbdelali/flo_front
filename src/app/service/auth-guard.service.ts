@@ -11,21 +11,14 @@ export class AuthGuardService implements CanActivate{
   constructor(private router: Router, private authService : AuthServiceService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log(this.isAdmin());
+
         if (this.authService.isUserAuthenticated()) {
-            // check if route is restricted by role
-            if (!this.isAdmin()) {
-                // role not authorised so redirect to home page
-                this.router.navigate(['/']);
-                return false;
-            }
-
-            // authorised so return true
-            return true;
+          return true;
         }
-
         // not logged in so redirect to login page with the return url
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+        console.log(this.router);
+        this.router.navigate(['/login']);
+        console.log(this.router);
         return false;
   }
 

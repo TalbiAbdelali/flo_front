@@ -1,6 +1,9 @@
 
 /* BASIC */
 
+.error {
+  color: red;
+}
 html {
     background-color: #56baed;
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { error } from 'protractor';
 import { User } from '../model/user/user';
 import { UserServiceService } from '../service/user-service.service';
 
@@ -19,8 +20,8 @@ export class ProfilComponent implements OnInit {
     this.isFormEnabled = false;
     this.userService.getUserByUsername(localStorage.getItem('currentUser')).subscribe(res => {
       this.data = res;
-      console.log(this.data);
       localStorage.setItem('idUser', this.data.id);
+      console.log(this.data);
     });
   }
 
@@ -29,11 +30,14 @@ export class ProfilComponent implements OnInit {
       this.isFormEnabled = false;
       element.textContent = "Edit";
       console.log(this.data); // call put request to api
+      this.userService.editUser(this.data).subscribe(error => {
+        console.log(error);
+        
+      });
     } else {
       this.isFormEnabled = true
       element.textContent = text;
     }
-    //element.disabled = true;
   }
 
 }

@@ -14,7 +14,10 @@
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" formControlName="password">
       <button type="submit" class="fadeIn fourth" >Log In</button>
     </form>
-
+    <!-- Show Error Message -->
+    <div *ngIf="errorMessage">
+      <p class="error">Invalid username and password Please try again</p>
+    </div>
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <a class="underlineHover" href="#">Forgot Password?</a><br><br>

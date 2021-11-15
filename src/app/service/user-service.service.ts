@@ -24,6 +24,9 @@ export class UserServiceService {
   }
 
   public editUser(user:User) {
-    return this.http.put<User>(environment.apiURL+'/api/user'+localStorage.getItem('idUser'), user);
+    console.log("edituser");
+    let url = environment.apiURL+'/api/user/'+localStorage.getItem('idUser');
+    console.warn(url);
+    return this.http.put<User>(environment.apiURL+'/api/user/'+localStorage.getItem('idUser'), user);
   }
 }

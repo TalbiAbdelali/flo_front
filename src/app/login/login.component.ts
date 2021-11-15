@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   formGroup : FormGroup;
   infoMessage : String;
+  errorMessage : boolean = false;
 
   @Output()
   isAuthenticated : boolean = false;
@@ -59,7 +60,11 @@ export class LoginComponent implements OnInit {
                     this.authService.getLoggedInName.emit('Sign In');
                     //alert(result.message);
                 }
-            })
+            },
+            error => {
+                this.errorMessage = true;
+            }
+            );
         }
     }
 
