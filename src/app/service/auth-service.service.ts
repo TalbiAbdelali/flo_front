@@ -72,4 +72,16 @@ export class AuthServiceService {
     console.log('Call api...');
     return this.http.get<any>(this.url+'/admin/api/user', { observe: 'response'});
   }*/
+
+  isAdmin() {
+    let jwt = localStorage.getItem('token');
+
+    let jwtData = jwt.split('.')[1]
+    let decodedJwtJsonData = window.atob(jwtData)
+    let decodedJwtData = JSON.parse(decodedJwtJsonData)
+    let role = decodedJwtData.authorities
+                  .find(elem => elem.authority.split("_")[0]=== "ROLE")
+                  .authority.split("_")[1];
+    return role === "ADMIN";
+  }
 }

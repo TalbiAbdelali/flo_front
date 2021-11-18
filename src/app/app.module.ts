@@ -15,6 +15,9 @@ import { ProfilComponent } from './profil/profil.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { AuthServiceService } from './service/auth-service.service';
 import { ErrorInterceptor } from './interseptor/errorInterceptor';
+import { UserListComponent } from './user-list/user-list.component';
+import { ScrollTopComponent } from './scroll-top/scroll-top.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -35,7 +38,10 @@ export class XhrInterceptor implements HttpInterceptor {
     HomeComponent,
     SinginComponent,
     MenuComponent,
-    ProfilComponent
+    ProfilComponent,
+    UserListComponent,
+    ScrollTopComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

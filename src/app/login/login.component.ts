@@ -12,12 +12,13 @@ import { AuthServiceService } from '../service/auth-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  formGroup : FormGroup;
-  infoMessage : String;
-  errorMessage : boolean = false;
+    formGroup : FormGroup;
+    infoMessage : String;
+    errorMessage : boolean = false;
+    windowSpinner: boolean;
 
-  @Output()
-  isAuthenticated : boolean = false;
+    @Output()
+    isAuthenticated : boolean = false;
 
     constructor(
         private authService: AuthServiceService,
@@ -31,10 +32,10 @@ export class LoginComponent implements OnInit {
         this.initForm();
         this.route.queryParams
         .subscribe(params => {
-          if(params.registered !== undefined && params.registered === 'true') {
-              this.infoMessage = 'Registration Successful! Please Login!';
-              
-          }
+            if(params.registered !== undefined && params.registered === 'true') {
+                this.infoMessage = 'Registration Successful! Please Login!';
+                
+            }
         });
     }
 
@@ -55,7 +56,11 @@ export class LoginComponent implements OnInit {
                     //console.log(localStorage.getItem('token'));
                     localStorage.setItem ('currentUser', this.formGroup.controls['username'].value);
                     this.authService.getLoggedInName.emit(localStorage.getItem('currentUser'));
-                    this.router.navigate(['menu'], {queryParams: { registered: 'true' } });
+                    this.windowSpinner = true;
+                    setTimeout(() => { 
+                        this.router.navigate(['menu'], {queryParams: { registered: 'true' } });
+                    }, 5000);
+                    
                 } else {
                     this.authService.getLoggedInName.emit('Sign In');
                     //alert(result.message);
@@ -66,6 +71,10 @@ export class LoginComponent implements OnInit {
             }
             );
         }
+    }
+
+    onWindowSpinner() {
+        return this.windowSpinner;
     }
 
 }

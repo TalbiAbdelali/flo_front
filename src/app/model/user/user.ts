@@ -8,4 +8,5 @@ export class User {
     password : string;
     roles : string;
     permissions : String;
+    active : number;
 }

@@ -1,5 +1,14 @@
 body {
-    background: rgb(99, 39, 120)
+    background: rgb(99, 39, 120);
+    margin-top:20px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;  
+}
+
+.editDev {
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .form-control:focus {
@@ -42,3 +51,4 @@ body {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+

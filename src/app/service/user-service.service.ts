@@ -15,18 +15,15 @@ export class UserServiceService {
   }
 
   public findAll() : Observable<User[]> {
-    return this.http.get<User[]>(environment.apiURL);
+    return this.http.get<User[]>(environment.apiURL+"/api/user");
   }
 
   public getUserByUsername(username){
-    let params = new HttpParams().set("username", username);
-    return this.http.get<User>(environment.apiURL+'/api/user', {params});
+    //let params = new HttpParams().set("username", username);
+    return this.http.get<User>(environment.apiURL+'/api/user/'+username);
   }
 
   public editUser(user:User) {
-    console.log("edituser");
-    let url = environment.apiURL+'/api/user/'+localStorage.getItem('idUser');
-    console.warn(url);
     return this.http.put<User>(environment.apiURL+'/api/user/'+localStorage.getItem('idUser'), user);
   }
 }
