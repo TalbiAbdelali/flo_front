@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { error } from 'protractor';
-import { User } from '../model/user/user';
+import { Router } from '@angular/router';
 import { UserServiceService } from '../service/user-service.service';
 
 @Component({
@@ -16,13 +15,14 @@ export class ProfilComponent implements OnInit {
 
   editView : boolean = false;
 
-  constructor(private userService : UserServiceService) { }
+  constructor(private userService : UserServiceService, private router : Router) { }
 
   ngOnInit(): void {
     this.isFormEnabled = false;
-    this.userService.getUserByUsername(localStorage.getItem('currentUser')).subscribe(res => {
+    let idUser = this.router.url.split('?idUser=')[1];
+    this.userService.getUserById(idUser).subscribe(res => {
       this.data = res;
-      localStorage.setItem('idUser', this.data.id);
+      //localStorage.setItem('idUser', this.data.id);
       console.log(this.data);
     });
     

@@ -31,7 +31,7 @@
           </li>
           <li class="nav-item">
             <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control me-2" (input)="onInput($event)" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-light button-search" type="submit"><img class="search" src="../../assets/icons8-search-50.png" alt="Search"></button>
             </form>
           </li>
@@ -42,7 +42,7 @@
             <a routerLink="/login" class="nav-link" href="#">Login</a>
           </li>
           <li *ngIf="isAuthenticated()" class="nav-item">
-            <a routerLink="/profil" class="nav-link" href="#">Welcome {{userName}}</a>
+            <a class="nav-link" (click)="onShowProfil()" href="javascript:void(0);">Welcome {{userName}}</a>
           </li>
           <li *ngIf="isAuthenticated()" class="nav-item">
             <a (click)="logout()" routerLink="/login" class="nav-link" href="#">Logout</a>

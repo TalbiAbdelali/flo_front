@@ -4,6 +4,11 @@
 .error {
   color: red;
 }
+
+.spinner {
+  position: absolute; top: 50%; left: 50%;
+}
+
 html {
     background-color: #56baed;
   }

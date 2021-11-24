@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthServiceService } from '../service/auth-service.service';
+import { UserServiceService } from '../service/user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private authService: AuthServiceService,
+        private userService : UserServiceService,
         private route: ActivatedRoute,
         private router: Router,
         private http: HttpClient
@@ -56,10 +58,13 @@ export class LoginComponent implements OnInit {
                     //console.log(localStorage.getItem('token'));
                     localStorage.setItem ('currentUser', this.formGroup.controls['username'].value);
                     this.authService.getLoggedInName.emit(localStorage.getItem('currentUser'));
+                    this.userService.getUserByUsername(this.formGroup.controls['username'].value).subscribe(res => {
+                        localStorage.setItem ('idUser', res.id);
+                    });
                     this.windowSpinner = true;
                     setTimeout(() => { 
                         this.router.navigate(['menu'], {queryParams: { registered: 'true' } });
-                    }, 5000);
+                    }, 2000);
                     
                 } else {
                     this.authService.getLoggedInName.emit('Sign In');

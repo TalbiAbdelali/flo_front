@@ -5,6 +5,12 @@ export class User {
     father : string;
     mother : string;
     email : string;
+    location : string;
+    birthady : Date;
+    sex : string;
+    address : string;
+    phone : number;
+    urlPhoto : string;
     password : string;
     roles : string;
     permissions : String;

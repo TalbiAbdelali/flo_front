@@ -17,7 +17,8 @@ import { AuthServiceService } from './service/auth-service.service';
 import { ErrorInterceptor } from './interseptor/errorInterceptor';
 import { UserListComponent } from './user-list/user-list.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { GlobalSearchService } from './service/global-search.service';
+import { AdminGuardService } from './service/admin-guard.service';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -40,8 +41,7 @@ export class XhrInterceptor implements HttpInterceptor {
     MenuComponent,
     ProfilComponent,
     UserListComponent,
-    ScrollTopComponent,
-    SpinnerComponent
+    ScrollTopComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +52,10 @@ export class XhrInterceptor implements HttpInterceptor {
   ],
   providers: [
     UserServiceService,
+    AdminGuardService,
     AuthGuardService,
     AuthServiceService,
+    GlobalSearchService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
