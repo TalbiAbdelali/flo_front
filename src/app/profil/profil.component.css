@@ -52,3 +52,50 @@ body {
     border: solid 1px #BA68C8
 }
 
+.file-upload{
+	height:150px;
+	width:150px;
+	margin:40px auto;
+	border:1px solid #f0c0d0;
+	border-radius:100px;
+	overflow:hidden;
+	position:relative;
+}
+.file-upload input{
+	position:absolute;
+	height:400px;
+	width:400px;
+	left:-200px;
+	top:-200px;
+	background:transparent;
+	opacity:0;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);  
+}
+.file-upload img{
+	height:130px;
+	width:130px;
+	margin:10px;
+}
+
+.box:hover .image {
+    opacity: 0;
+}
+.box:hover .text {
+    opacity: 1;
+}
+
+.image,
+.text {
+    transition: 0.3s;
+}
+.text {
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* HIDE SECOND TITLE */
+    opacity: 0;
+}
+

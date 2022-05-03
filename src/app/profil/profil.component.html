@@ -3,8 +3,15 @@
         <div class="col-md-3 border-right">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://bootdey.com/img/Content/avatar/avatar7.png">
-                        <span class="font-weight-bold">{{data.username}}</span>
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5 box">
+                        <img class="rounded-circle mt-5 image" width="150px" [src]="data.urlPhoto">
+                        <div class="file-upload text">
+                            <!--place upload image/icon first !-->
+                            <img src="https://i.stack.imgur.com/dy62M.png" class="img-upload" />
+                            <!--place input file last !-->
+                            <input type="file" name="pic-upload" (change)="fileChangeEvent($event.target.files)" accept="image/*"/>
+                        </div>
+                        <span class="font-weight-bold">{{data.username}} {{data.lastname}}</span>
                         <span class="text-black-50">{{data.email}}</span>
                     </div>
                 </div>
@@ -17,22 +24,28 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels">Name</label><input  type="text" name="username" class="form-control" placeholder="first name" [(ngModel)]="data.username"></div>
-                            <div class="col-md-6"><label class="labels">Surname</label><input  type="text" name="lastname" class="form-control" [(ngModel)]="data.lastname" placeholder="surname"></div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">Email ID</label><input  type="text" class="form-control" placeholder="enter email id" [(ngModel)]="data.email"></div>
-                            <div class="col-md-12"><label class="labels">Father</label><input  type="text" class="form-control" placeholder="enter father name" [(ngModel)]="data.father"></div>
-                            <div class="col-md-12"><label class="labels">Mather</label><input  type="text" class="form-control" placeholder="enter mother name" [(ngModel)]="data.mother"></div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6"><label class="labels">Country</label><input  type="text" class="form-control" placeholder="country" value="Morocco"></div>
-                            <div class="col-md-6"><label class="labels">State/Region</label><input  type="text" class="form-control" value="Rabat" placeholder="state"></div>
-                        </div>
-                        <div class="mt-5 text-center">
-                            <button class="btn btn-primary profile-button" type="button" (click)="setSaving()">Save</button>
-                        </div>
+                        <form [formGroup]="formGroup" (ngSubmit)="updateUser()">
+                            <div class="row mt-2">
+                                <div class="col-md-6"><label class="labels">Name</label><input  type="text" name="username" class="form-control" placeholder="first name" [(ngModel)]="data.username"></div>
+                                <div class="col-md-6"><label class="labels">Surname</label><input  type="text" name="lastname" class="form-control" [(ngModel)]="data.lastname" placeholder="surname"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Email ID</label><input  type="text" class="form-control" placeholder="enter email id" [(ngModel)]="data.email"></div>
+                                <div class="col-md-6"><label class="labels">Sex</label><input  type="text" class="form-control" placeholder="enter father name" [(ngModel)]="data.sex"></div>
+                                <div class="col-md-6"><label class="labels">BirthDay</label><input  type="text" class="form-control" placeholder="enter mother name" [(ngModel)]="data.birthday"></div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6"><label class="labels">Father</label><input  type="text" class="form-control" placeholder="enter father name" [(ngModel)]="data.father"></div>
+                                <div class="col-md-6"><label class="labels">Mather</label><input  type="text" class="form-control" placeholder="enter mother name" [(ngModel)]="data.mother"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6"><label class="labels">Phone</label><input  type="text" class="form-control" placeholder="country" value="Morocco" [(ngModel)]="data.phone"></div>
+                                <div class="col-md-6"><label class="labels">Address</label><input  type="text" class="form-control" value="Rabat" placeholder="state" [(ngModel)]="data.address"></div>
+                            </div>
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" type="submit">Save</button>
+                            </div>
+                        </form>
                     </div>
                     
                 </div>
@@ -65,7 +78,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <img [src]="data.urlPhoto" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                         <h4>{{data.username}} {{data.lastname}}</h4>
                         <p class="text-secondary mb-1">Full Stack Developer</p>
@@ -124,19 +137,46 @@
                     <hr>
                     <div class="row">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Phone</h6>
+                        <h6 class="mb-0">Sex</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        (239) 816-9029
+                        {{data.sex}} 
                     </div>
                     </div>
                     <hr>
                     <div class="row">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Mobile</h6>
+                        <h6 class="mb-0">Birth day</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        (320) 380-4539
+                        {{data.birthday}} 
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Mother</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{data.mother}} 
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Father</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{data.father}} 
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Mobile </h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        +{{data.phone}} 
                     </div>
                     </div>
                     <hr>
@@ -145,7 +185,7 @@
                         <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        Bay Area, San Francisco, CA
+                        {{data.address}} 
                     </div>
                     </div>
                     <hr>
